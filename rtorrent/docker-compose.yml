@@ -1,0 +1,21 @@
+version: "2.1"
+services:
+  rutorrent:
+    image: linuxserver/rutorrent
+    container_name: rutorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./config:/config
+      - ../downloads:/downloads
+      - ../auto_upload:/auto_upload
+      - /certs:/certs
+      - ./logs:/logs
+    ports:
+      - 80:80
+      - 443:443
+      - 5000:5000
+      - 8894:8894
+      - 6881:6881/udp
+    restart: unless-stopped
